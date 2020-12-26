@@ -13,7 +13,8 @@ namespace core
     {
         static void Main(string[] args)
         {
-            using (SentrySdk.Init("https://fb728c83a87b4987b74632ce2f13f21a@o496504.ingest.sentry.io/5571327"))
+            DotNetEnv.Env.TraversePath().Load();
+            using (SentrySdk.Init(DotNetEnv.Env.GetString("sentry")))
             {
                 new Program().Run().GetAwaiter().GetResult();
             }
@@ -25,7 +26,6 @@ namespace core
         
         private async Task Run()
         {
-            DotNetEnv.Env.TraversePath().Load();
             _client = new DiscordSocketClient();
             _commands = new CommandService();
 
