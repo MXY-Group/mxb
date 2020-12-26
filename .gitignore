@@ -1,0 +1,4 @@
+Core/.env
+.idea
+Core/bin/*
+Core/obj
